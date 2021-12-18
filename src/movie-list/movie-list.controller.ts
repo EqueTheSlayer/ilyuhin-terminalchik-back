@@ -19,7 +19,7 @@ export class MovieListController {
     return this.movieService.createMovie(createMovieDto);
   }
 
-  @Put()
+  @Put(':id')
   updateMovie(@Body() updateMovieDto:UpdateMovieDto, @Param('id') id:string): Promise<Movies> {
     return this.movieService.updateMovie(id, updateMovieDto);
   }
