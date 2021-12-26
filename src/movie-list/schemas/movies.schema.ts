@@ -3,7 +3,7 @@ import { Document } from 'mongoose';
 
 export type MovieDocument = Movies & Document;
 
-@Schema()
+@Schema({ versionKey: false })
 export class Movies {
   @Prop()
   title: string;

@@ -15,9 +15,13 @@ export class MovieListService {
   }
 
   async createMovie(movieDto: CreateMovieDto): Promise<Movies> {
-    const newMovie =  new this.movieModel(movieDto);
+    const alreadyCreatedMovie = await this.movieModel.findOne({title: movieDto.title});
 
-    return newMovie.save();
+    if (!alreadyCreatedMovie) {
+      const newMovie =  new this.movieModel(movieDto);
+
+      return newMovie.save();
+    }
   }
 
   async updateMovie(id: string, movieDto: UpdateMovieDto): Promise<Movies> {
